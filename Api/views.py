@@ -7,6 +7,7 @@ from .serializers import LoginSerializer
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -52,3 +53,8 @@ def LoginView(request):
         if serializer.is_valid():
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def HomePage(request):
+    html = "<html><body><center><h3>Web Api Go to url /api/login</center></h3></body></html>"
+    return HttpResponse(html)
